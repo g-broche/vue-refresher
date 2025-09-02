@@ -1,10 +1,14 @@
 <!-- src/components/Modal.vue -->
 <template>
-  <div v-if="modalContent" class="modal-overlay" @click.self="close">
-    <div class="modal-content">
+  <div v-if="modalContent" class="modal-overlay" @click.self="triggerModalClosure">
+    <div class="modal-content content-box scroll-container">
+      <ButtonIcon
+        :icon="'close'"
+        :button-classes="['modal-close']"
+        :onClick="triggerModalClosure"
+      />
       <header class="modal-header">
         <h2>{{ title }}</h2>
-        <button @click="close" class="modal-close">&times;</button>
       </header>
 
       <!-- Render the dynamic component -->
@@ -12,7 +16,7 @@
         :is="modalContent"
         v-bind="componentProps"
         @success="handleSuccess"
-        @cancel="close"
+        @cancel="triggerModalClosure"
       />
     </div>
   </div>
@@ -20,6 +24,7 @@
 
 <script setup lang="ts">
   import { defineEmits } from 'vue'
+  import ButtonIcon from './elements/ButtonIcon.vue';
   import type { Component } from "vue"
   
 const props = defineProps<{
@@ -30,7 +35,7 @@ const props = defineProps<{
 
   const emit = defineEmits(["close", "success"])
 
-  function close() {
+  function triggerModalClosure() {
     emit("close")
   }
 
@@ -50,10 +55,12 @@ const props = defineProps<{
   background-color: rgba(0, 0, 0, 0.5);
 }
 .modal-content {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  width: 380px;
+  position:relative;
+  padding: 3rem;
+  border-radius: var(--radius);
+  min-width: 50vw;
+  max-width: 80vw;
+  max-height: 80vh;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 .modal-header {
@@ -63,6 +70,9 @@ const props = defineProps<{
   margin-bottom: 1rem;
 }
 .modal-close {
+  position: absolute;
+  top:0;
+  right:0;
   background: none;
   border: none;
   font-size: 1.5rem;

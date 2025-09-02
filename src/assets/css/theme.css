@@ -1,0 +1,129 @@
+:root {
+    --color-primary: #2c7713;
+    --color-secondary: #5598c8;
+    --color-tertiary: #6eef62;
+    --color-light: #e1f0fc;
+    --color-input-background: #d1d5db;
+    --color-dark: #163b06;
+    --color-interactive: #fbcb3a;
+    --color-danger: #e63946;
+
+    --spacing-xl: 3rem;
+    --spacing-l: 2rem;
+    --spacing-m: 1rem;
+    --spacing-s: .75rem;
+    --spacing-xs: .5rem;
+
+    --radius: .5rem;
+
+    --font-size-xxxl: 2.5rem;
+    --font-size-xxl: 2rem;
+    --font-size-xl: 1.5rem;
+    --font-size-l: 1.25rem;
+    --font-size-m: 1rem;
+    --font-size-s: .9rem;
+}
+
+* {
+    color: var(--color-dark);
+    font-size: var(--font-size-m);
+
+}
+
+h1 {
+    font-size: var(--font-size-xxxl);
+    text-align: center;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: var(--font-size-xxl);
+    text-align: center;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: var(--font-size-xl);
+    font-weight: bold;
+}
+
+.interactive-text {
+    color: var(--color-interactive);
+}
+
+.background-dark {
+    background-color: var(--color-primary);
+}
+
+.background-light {
+    background-color: var(--color-secondary);
+}
+
+.content-box {
+    background-color: var(--color-secondary);
+}
+
+button:not(.svg-button),
+.btn:not(.svg-button) {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color-dark);
+    background-color: var(--color-interactive);
+}
+
+.svg-button {
+    cursor: pointer;
+
+    svg {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+.input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--color-light);
+    border-radius: var(--radius);
+    background-color: var(--color-input-background);
+    color: var(--color-dark);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-m);
+
+    & .submit {
+        margin-top: var(--spacing-m);
+    }
+}
+
+.scroll-container {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}

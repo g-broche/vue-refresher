@@ -1,21 +1,26 @@
 <template>
     <form @submit.prevent="handleSubmit">
-        <div class="form-group">
-            <label>Email</label>
-            <input v-model="email" type="email" class="input" />
-        </div>
-        
-        <div class="form-group">
-            <label>Password</label>
-            <input v-model="password" type="password" class="input" />
-        </div>
+        <FormGroupField
+            v-model="email"
+            field-type="email"
+            label="Email"
+            inputId="email-field"
+        />
 
-        <button type="submit" class="btn btn-submit">Login</button>
+        <FormGroupField
+            v-model="password"
+            field-type="password"
+            label="Password"
+            inputId="password-field"
+        />
+
+        <button type="submit" class="button submit">Login</button>
     </form>
 </template>
 
 <script setup lang="ts">
     import { ref, defineEmits } from "vue"
+    import FormGroupField from "./groups/FormGroupField.vue"
 
     const email = ref("")
     const password = ref("")

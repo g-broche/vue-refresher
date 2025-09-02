@@ -1,6 +1,6 @@
 <template>
-    <header>
-        <h1>MyApp</h1>
+    <header class="background-light">
+        <h1 class="interactive-text">MyPhotoApp</h1>
         <div class="actions">
             <button @click="emitLoginOpen">Sign in</button>
             <button @click="emitRegisterOpen">Sign up</button>
@@ -22,7 +22,7 @@
 <style scoped>
     header{
         padding: 1rem;
-        height: 64px;
+        height: 100px;
         display: flex;
         justify-content: space-between;
         align-items: center;
