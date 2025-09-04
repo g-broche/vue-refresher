@@ -19,17 +19,30 @@
 </template>
 
 <script setup lang="ts">
-    import { ref, defineEmits } from "vue"
-    import FormGroupField from "./groups/FormGroupField.vue"
+    import { ref, defineEmits } from "vue";
+    import FormGroupField from "./groups/FormGroupField.vue";
+    import type { LoginRequest } from "@/types/Requests";
+    import { useAuthStore } from "@/stores/auth";
 
-    const email = ref("")
-    const password = ref("")
+    const email = ref("");
+    const password = ref("");
 
-    const emit = defineEmits(["success"])
+    const authStore = useAuthStore();
 
-    function handleSubmit() {
-        console.log("Login with", email.value, password.value)
-        emit("success")
+    const emit = defineEmits(["close"]);
+
+    async function handleSubmit() {
+        // console.log("Login with", email.value, password.value)
+        try {
+            const credentials : LoginRequest = {email: email.value, password: password.value};
+            await authStore.login(credentials);
+            if (authStore.isAuthenticated) {
+                emit("close");
+            }
+        } catch (err) {
+            const message = err instanceof Error ? err.message : "Unknown error during the operation";
+            alert(message);
+        }
     }
 </script>
 

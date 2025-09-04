@@ -15,8 +15,7 @@
       <component
         :is="modalContent"
         v-bind="componentProps"
-        @success="handleSuccess"
-        @cancel="triggerModalClosure"
+        @close="triggerModalClosure"
       />
     </div>
   </div>
@@ -33,14 +32,10 @@ const props = defineProps<{
   componentProps?: Record<string, unknown>;
 }>();
 
-  const emit = defineEmits(["close", "success"])
+  const emit = defineEmits(["close"])
 
   function triggerModalClosure() {
     emit("close")
-  }
-
-  function handleSuccess() {
-    close()
   }
 </script>
 

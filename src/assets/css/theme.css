@@ -114,7 +114,7 @@ form {
     gap: var(--spacing-m);
 
     & .submit {
-        margin-top: var(--spacing-m);
+        margin-top: var(--spacing-l);
     }
 }
 

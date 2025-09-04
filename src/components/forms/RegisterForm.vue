@@ -36,26 +36,38 @@
 </template>
 
 <script setup lang="ts">
-    import { ref, defineEmits } from "vue"
-    import FormGroupField from "./groups/FormGroupField.vue"
+    import { ref, defineEmits } from "vue";
+    import { useAuthStore } from "@/stores/auth";
+    import { storeToRefs } from "pinia";
+    import FormGroupField from "./groups/FormGroupField.vue";
 
-    const firstName = ref("")
-    const lastName = ref("")
-    const email = ref("")
-    const password = ref("")
-    const passwordConfirm = ref("")
+    const authStore = useAuthStore();
 
-    const emit = defineEmits(["success"])
-    function handleSubmit() {
-        const user = {
-            firstName: firstName.value,
-            lastName: lastName.value,
-            email: email.value,
-            password: password.value,
-            passwordConfirm: passwordConfirm.value,
+    const firstName = ref("");
+    const lastName = ref("");
+    const email = ref("");
+    const password = ref("");
+    const passwordConfirm = ref("");
+
+    const emit = defineEmits(["close"])
+    async function handleSubmit() {
+        try {
+            const registerData = {
+                firstName: firstName.value,
+                lastName: lastName.value,
+                email: email.value,
+                password: password.value,
+                passwordConfirm: passwordConfirm.value,
+            };
+        await authStore.login(registerData);
+            if (authStore.isAuthenticated) {
+                emit("close");
+            }
+        } catch (err) {
+            const message = err instanceof Error ? err.message : "Unknown error during the operation";
+            alert(message);
         }
-        console.log("Registering with", user);
-        emit("success");
+
     }
 </script>
 
