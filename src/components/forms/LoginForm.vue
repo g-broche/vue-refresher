@@ -28,12 +28,13 @@
     import FormGroupField from "./groups/FormGroupField.vue";
     import type { LoginRequest } from "@/types/Requests";
     import { useAuthStore } from "@/stores/auth";
-import { RequiredConstraint, EmailConstraint, PasswordConstraint } from "@/validators/constraints/Constraint";
-import { validateFormGroups } from "@/utils/validationUtil";
+    import { RequiredConstraint, EmailConstraint, PasswordConstraint } from "@/validators/constraints/Constraint";
+    import { validateFormGroups } from "@/utils/validationUtil";
 
     const email = ref("");
     const password = ref("");
 
+    // setting up constraints for the validation
     const emailConstraints = new Set([
         new RequiredConstraint("Email is required"),
         new EmailConstraint()
@@ -43,6 +44,7 @@ import { validateFormGroups } from "@/utils/validationUtil";
         new PasswordConstraint()
     ]);
 
+    // getting ref to the form groups for use in the script
     const emailGroup = ref<InstanceType<typeof FormGroupField> | null>(null);
     const passwordGroup = ref<InstanceType<typeof FormGroupField> | null>(null);
 
@@ -55,10 +57,11 @@ import { validateFormGroups } from "@/utils/validationUtil";
     async function handleSubmit() {
         console.log("firing submit")
         try {
-            const isFormValid = validateFormGroups(formGroups);
+            const isFormValid = validateFormGroups(formGroups); // running validation of all form groups
             if(!isFormValid){
                 return;
             }
+            // if valid, attempt to log through API and store user
             const credentials : LoginRequest = {email: email.value, password: password.value};
             await authStore.login(credentials);
             if (authStore.isAuthenticated) {

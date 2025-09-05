@@ -2,7 +2,7 @@
     --color-primary: #2c7713;
     --color-secondary: #5598c8;
     --color-tertiary: #6eef62;
-    --color-light: #e1f0fc;
+    --color-light: #f7f3f1;
     --color-input-background: #d1d5db;
     --color-dark: #163b06;
     --color-interactive: #fbcb3a;
@@ -25,7 +25,7 @@
 }
 
 * {
-    color: var(--color-dark);
+    color: var(--color-light);
     font-size: var(--font-size-m);
 
 }

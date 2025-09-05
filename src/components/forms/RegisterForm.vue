@@ -67,10 +67,12 @@
     const password = ref("");
     const passwordConfirm = ref("");
 
+    // getter use to get real time value of password input for comparison with the confirmation feild
     function getPasswordValue(){
         return password.value;
     }
 
+    //setting up constraints
     const firstNameConstraints = new Set([
         new RequiredConstraint("First name is required"),
         new MinLengthConstraint(1),
@@ -94,6 +96,7 @@
         new MatchConstraint(() => getPasswordValue(), "Confirmation is different from the given password")
     ]);
 
+    // getting refs to the various form groups
     const firstNameGroup = ref<InstanceType<typeof FormGroupField> | null>(null);
     const lastNameGroup = ref<InstanceType<typeof FormGroupField> | null>(null);
     const emailGroup = ref<InstanceType<typeof FormGroupField> | null>(null);
@@ -105,17 +108,19 @@
     const emit = defineEmits(["close"])
     async function handleSubmit() {
         try {
+            // running validation for all form groups
             const isFormValid = validateFormGroups(formGroups);
             if(!isFormValid){
                 return;
             }
+            // if valid attempt to register user through API and store the authenticated user if success
             const registerData = {
                 firstName: firstName.value,
                 lastName: lastName.value,
                 email: email.value,
                 password: password.value,
             };
-        await authStore.register(registerData);
+            await authStore.register(registerData);
             if (authStore.isAuthenticated) {
                 emit("close");
             }

@@ -12,6 +12,8 @@
       @close="closeModal"
     >
     </Modal>
+
+    <router-view />
   </div>
 </template>
 

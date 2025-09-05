@@ -21,25 +21,30 @@ import { InputFieldValidator } from "@/validators/InputFieldValidator";
 import { defineProps, defineEmits, type InputTypeHTMLAttribute, ref, defineExpose } from "vue";
 
 const props = defineProps<{
-  modelValue: string;
+  modelValue: string; // value corresponding to the name used in the parent component for the related ref
   fieldType: InputTypeHTMLAttribute;
   label: string;
   inputId: string;
-  constraints: Set<BaseConstraint>;
+  constraints: Set<BaseConstraint>; // set of constraints for validation
 }>();
 
+// forward change of input value to the parent so the parent related ref can be updated
 const emit = defineEmits<{
   (e: "update:modelValue", value: string): void;
 }>();
 
-const isTouched = ref(false);
+const isTouched = ref(false); // turns true after first user action on input or through validation
 const isValid = ref(true);
 const errorMessage = ref<string | null>(null);
 
-const inputElement = ref<HTMLInputElement | null>(null);
+const inputElement = ref<HTMLInputElement | null>(null); // ref pointing to the input used in the form group so that its properties can be accessed
 
 const validator = new InputFieldValidator(props.constraints);
 
+/**
+ * on submit validate the form group input and also forward the value to the parent
+ * @param event change of input value
+ */
 function handleInputChange(event: Event) {
   const value = (event.target as HTMLInputElement).value;
   isTouched.value = true;
@@ -54,6 +59,7 @@ function handleInputChange(event: Event) {
 function runValidation(value: string): boolean {
   const result = validator.validate(value);
   isValid.value = result.valid;
+  isTouched.value = true;
   errorMessage.value = result.message;
   return result.valid;
 }
