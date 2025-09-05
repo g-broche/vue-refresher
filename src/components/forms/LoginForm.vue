@@ -5,6 +5,8 @@
             field-type="email"
             label="Email"
             inputId="email-field"
+            :constraints="emailConstraints"
+            ref="emailGroup"
         />
 
         <FormGroupField
@@ -12,6 +14,9 @@
             field-type="password"
             label="Password"
             inputId="password-field"
+            :constraints="passwordConstraints"
+            ref="passwordGroup"
+
         />
 
         <button type="submit" class="button submit">Login</button>
@@ -23,17 +28,37 @@
     import FormGroupField from "./groups/FormGroupField.vue";
     import type { LoginRequest } from "@/types/Requests";
     import { useAuthStore } from "@/stores/auth";
+import { RequiredConstraint, EmailConstraint, PasswordConstraint } from "@/validators/constraints/Constraint";
+import { validateFormGroups } from "@/utils/validationUtil";
 
     const email = ref("");
     const password = ref("");
+
+    const emailConstraints = new Set([
+        new RequiredConstraint("Email is required"),
+        new EmailConstraint()
+    ]);
+    const passwordConstraints = new Set([
+        new RequiredConstraint("Password is required"),
+        new PasswordConstraint()
+    ]);
+
+    const emailGroup = ref<InstanceType<typeof FormGroupField> | null>(null);
+    const passwordGroup = ref<InstanceType<typeof FormGroupField> | null>(null);
+
+    const formGroups = [emailGroup, passwordGroup]
 
     const authStore = useAuthStore();
 
     const emit = defineEmits(["close"]);
 
     async function handleSubmit() {
-        // console.log("Login with", email.value, password.value)
+        console.log("firing submit")
         try {
+            const isFormValid = validateFormGroups(formGroups);
+            if(!isFormValid){
+                return;
+            }
             const credentials : LoginRequest = {email: email.value, password: password.value};
             await authStore.login(credentials);
             if (authStore.isAuthenticated) {

@@ -4,6 +4,7 @@
     xmlns="http://www.w3.org/2000/svg"
     :width="icon.width"
     :height="icon.height"
+    fill="currentColor"
   >
     <path v-for="(d, i) in icon.paths" :key="i" :d="d" />
   </svg>

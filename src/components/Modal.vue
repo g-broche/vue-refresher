@@ -1,6 +1,6 @@
 <!-- src/components/Modal.vue -->
 <template>
-  <div v-if="modalContent" class="modal-overlay" @click.self="triggerModalClosure">
+  <div v-if="modalContent" class="modal-overlay">
     <div class="modal-content content-box scroll-container">
       <ButtonIcon
         :icon="'close'"
@@ -51,7 +51,7 @@ const props = defineProps<{
 }
 .modal-content {
   position:relative;
-  padding: 3rem;
+  padding: 5rem;
   border-radius: var(--radius);
   min-width: 50vw;
   max-width: 80vw;

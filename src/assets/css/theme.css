@@ -6,7 +6,7 @@
     --color-input-background: #d1d5db;
     --color-dark: #163b06;
     --color-interactive: #fbcb3a;
-    --color-danger: #e63946;
+    --color-danger: #bd1a1a;
 
     --spacing-xl: 3rem;
     --spacing-l: 2rem;
@@ -63,6 +63,10 @@ h3 {
     background-color: var(--color-secondary);
 }
 
+.error {
+    color: var(--color-danger)
+}
+
 button:not(.svg-button),
 .btn:not(.svg-button) {
     padding: 0.5rem 1rem;
@@ -77,9 +81,13 @@ button:not(.svg-button),
 .svg-button {
     cursor: pointer;
 
-    svg {
-        width: 2rem;
-        height: 2rem;
+    & svg {
+        width: 3rem;
+        height: 3rem;
+
+        & path {
+            color: var(--color-interactive);
+        }
     }
 }
 
