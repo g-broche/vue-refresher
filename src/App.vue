@@ -14,8 +14,8 @@
     </Modal>
     <div class="app-content-wrapper">
       <Navigation class="nav content-box" />
-      <main>
-        <router-view />
+      <main class="content-box">
+        <router-view class="view-content" />
       </main>
     </div>
   </div>
@@ -72,5 +72,11 @@ import Navigation from "./components/Navigation.vue";
 
   main{
     width: 85%;
+  }
+
+  .view-content{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-l);
   }
 </style>

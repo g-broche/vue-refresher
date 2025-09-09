@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="handleSubmit">
+    <form class="default" @submit.prevent="handleSubmit">
         <FormGroupField
             v-model="firstName"
             field-type="text"
@@ -49,14 +49,12 @@
     import { ref, defineEmits } from "vue";
     import { useAuthStore } from "@/stores/auth";
     import FormGroupField from "./groups/FormGroupField.vue";
-    import {
-        RequiredConstraint,
-        EmailConstraint,
-        PasswordConstraint,
-        MinLengthConstraint,
-        MaxLengthConstraint,
-        MatchConstraint 
-    } from "@/validators/constraints/Constraint";
+    import { RequiredConstraint } from "@/validators/constraints/RequiredConstraint";
+    import { PasswordConstraint } from "@/validators/constraints/PasswordConstraint";
+    import { MinLengthConstraint } from "@/validators/constraints/MinLengthConstraint";
+    import { MaxLengthConstraint } from "@/validators/constraints/MaxLengthConstraint";
+    import { MatchConstraint } from "@/validators/constraints/MatchConstraint";
+    import { EmailConstraint } from "@/validators/constraints/EmailConstraint";
     import { validateFormGroups } from "@/utils/validationUtil";
 
     const authStore = useAuthStore();

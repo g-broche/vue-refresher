@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="handleSubmit">
+    <form class="default" @submit.prevent="handleSubmit">
         <FormGroupField
             v-model="email"
             field-type="email"
@@ -28,7 +28,9 @@
     import FormGroupField from "./groups/FormGroupField.vue";
     import type { LoginRequest } from "@/types/Requests";
     import { useAuthStore } from "@/stores/auth";
-    import { RequiredConstraint, EmailConstraint, PasswordConstraint } from "@/validators/constraints/Constraint";
+import { RequiredConstraint } from "@/validators/constraints/RequiredConstraint";
+import { PasswordConstraint } from "@/validators/constraints/PasswordConstraint";
+import { EmailConstraint } from "@/validators/constraints/EmailConstraint";
     import { validateFormGroups } from "@/utils/validationUtil";
 
     const email = ref("");

@@ -5,6 +5,7 @@
     --color-light: #f7f3f1;
     --color-input-background: #d1d5db;
     --color-dark: #163b06;
+    --color-image-backdrop: #255937;
     --color-interactive: #fbcb3a;
     --color-danger: #bd1a1a;
 
@@ -60,9 +61,10 @@ h3 {
 }
 
 .content-box {
-    background-color: var(--color-secondary);
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
+    border-radius: var(--radius);
     padding: var(--spacing-m);
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
+    background-color: var(--color-secondary);
 }
 
 .error {
@@ -118,7 +120,7 @@ select {
     font: inherit;
 }
 
-form {
+form.default {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-m);
