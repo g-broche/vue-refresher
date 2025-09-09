@@ -26,6 +26,7 @@ const props = defineProps<{
   label: string;
   inputId: string;
   constraints: Set<BaseConstraint>; // set of constraints for validation
+  modelModifiers?: { trim?: boolean }; 
 }>();
 
 // forward change of input value to the parent so the parent related ref can be updated
@@ -46,7 +47,10 @@ const validator = new InputFieldValidator(props.constraints);
  * @param event change of input value
  */
 function handleInputChange(event: Event) {
-  const value = (event.target as HTMLInputElement).value;
+  let value = (event.target as HTMLInputElement).value;
+  if (props.modelModifiers?.trim) {
+    value = value.trim();
+  }
   isTouched.value = true;
   runValidation(value);
   emit("update:modelValue", value);

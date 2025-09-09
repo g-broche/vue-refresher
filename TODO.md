@@ -8,4 +8,5 @@
 * ✔ defineExpose to expose component properties to a parent component.
 * ✔ testing out ref in a wider context.
 * ✔ cross components auth context with pinia store (with auth methods).
+* ✔ use query and global query client configuration.
 * verify that requests do send the HttpOnly cookie to the API
