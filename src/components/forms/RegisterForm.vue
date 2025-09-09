@@ -1,7 +1,7 @@
 <template>
     <form class="default" @submit.prevent="handleSubmit">
         <FormGroupField
-            v-model="firstName"
+            v-model.trim="firstName"
             field-type="text"
             label="First name"
             inputId="first-name-field"
@@ -9,7 +9,7 @@
             ref="firstNameGroup"
         />
         <FormGroupField
-            v-model="lastName"
+            v-model.trim="lastName"
             field-type="text"
             label="Last name"
             inputId="last-name-field"
@@ -17,12 +17,13 @@
             ref="lastNameGroup"
         />
         <FormGroupField
-            v-model="email"
+            v-model.trim="email"
             field-type="email"
             label="Email"
             inputId="email-field"
             :constraints="emailConstraints"
             ref="emailGroup"
+            autocomplete="off"
         />
         <FormGroupField
             v-model="password"

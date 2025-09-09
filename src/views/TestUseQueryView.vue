@@ -41,10 +41,10 @@
     import { imageService } from '@/services/ImageService';
     import { useQuery } from '@tanstack/vue-query';
     import FormGroupField from '@/components/forms/groups/FormGroupField.vue';
-import { ref } from 'vue';
-import { IntegerConstraint } from '@/validators/constraints/IntegerConstraint';
-import { MinValueConstraint } from '@/validators/constraints/MinValueConstraint';
-import { validateFormGroups } from '@/utils/validationUtil';
+    import { ref } from 'vue';
+    import { IntegerConstraint } from '@/validators/constraints/IntegerConstraint';
+    import { MinValueConstraint } from '@/validators/constraints/MinValueConstraint';
+    import { validateFormGroups } from '@/utils/validationUtil';
     const title = "This is a view to experiment with Vue Query";
 
     const page = ref("1");

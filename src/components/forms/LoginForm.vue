@@ -1,7 +1,7 @@
 <template>
     <form class="default" @submit.prevent="handleSubmit">
         <FormGroupField
-            v-model="email"
+            v-model.trim="email"
             field-type="email"
             label="Email"
             inputId="email-field"
