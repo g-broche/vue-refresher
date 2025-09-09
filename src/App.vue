@@ -12,8 +12,12 @@
       @close="closeModal"
     >
     </Modal>
-
-    <router-view />
+    <div class="app-content-wrapper">
+      <Navigation class="nav content-box" />
+      <main>
+        <router-view />
+      </main>
+    </div>
   </div>
 </template>
 
@@ -24,6 +28,7 @@
   import LoginForm from "./components/forms/LoginForm.vue"
   import RegisterForm from "./components/forms/RegisterForm.vue"
   import type { Component } from "vue"
+import Navigation from "./components/Navigation.vue";
 
   const modalContent = shallowRef<Component | null>(null)
 
@@ -51,6 +56,21 @@
 <style scoped>
   .container {
     background-color: var(--color-primary);
+  }
+
+  .app-content-wrapper {
     min-height: 100vh;
+    width:100%;
+    padding: var(--spacing-xl);
+    display: flex;
+    gap: var(--spacing-l);
+  }
+
+  .nav{
+    width: 15%;
+  }
+
+  main{
+    width: 85%;
   }
 </style>

@@ -61,6 +61,8 @@ h3 {
 
 .content-box {
     background-color: var(--color-secondary);
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
+    padding: var(--spacing-m);
 }
 
 .error {
